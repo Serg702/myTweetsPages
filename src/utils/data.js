@@ -236,3 +236,15 @@ let tweets = {
     replies: []
   }
 };
+
+export const _getUsers = () => {
+  return new Promise((res, rej) => {
+    setTimeout(res({ ...users }), 1000);
+  });
+};
+
+export const _getTweets = () => {
+  return new Promise((res, rej) => {
+    setTimeout(res({ ...tweets }), 1000);
+  });
+};
