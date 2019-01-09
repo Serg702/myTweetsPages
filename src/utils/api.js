@@ -1,7 +1,7 @@
-import { _getUsers, getTweets } from "./data";
+import { _getUsers, _getTweets } from "./data";
 
 export const getInitialData = () => {
-  return Promise.all([_getUsers, getTweets]).then(([users, tweets]) => ({
+  return Promise.all([_getUsers(), _getTweets()]).then(([users, tweets]) => ({
     users,
     tweets
   }));

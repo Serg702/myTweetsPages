@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Main from "./components/Main";
 import NewTweet from "./components/NewTweet";
+import { handleInitialData } from "./actions";
+import { connect } from "react-redux";
 
 class App extends Component {
   state = {
@@ -10,6 +12,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    this.props.dispatch(handleInitialData());
     // todo: handle initial data
   }
   render() {
@@ -32,4 +35,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
