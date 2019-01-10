@@ -8,24 +8,30 @@ import { connect } from "react-redux";
 
 class App extends Component {
   state = {
-    loading: false
+    isLoading: true
   };
 
   componentDidMount() {
     this.props.dispatch(handleInitialData());
-    // todo: handle initial data
+  }
+
+  componentDidUpdate() {
+    const { tweets } = this.props;
+
+    if (tweets && this.state.isLoading) {
+      this.setState({ isLoading: false });
+    }
   }
   render() {
     return (
       <Router>
         <div>
-          <Nav />
-
-          {this.state.loading ? (
+          {this.state.isLoading ? (
             <h1>Loading...</h1>
           ) : (
             <div>
-              <Route path="/" component={Main} />
+              <Nav />
+              <Route path="/" exact component={Main} />
               <Route path="/new" component={NewTweet} />
             </div>
           )}
@@ -35,4 +41,10 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const mapStateToProps = store => {
+  return {
+    tweets: store.tweets
+  };
+};
+
+export default connect(mapStateToProps)(App);
