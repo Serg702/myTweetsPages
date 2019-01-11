@@ -1,6 +1,7 @@
 export const RECEIVE_TWEETS = "RECEIVE_TWEETS";
 export const ADD_LIKE = "ADD_LIKE";
 export const REMOVE_LIKE = "REMOVE_LIKE";
+export const REPLY_TO_TWEET = "REPLY_TO_TWEET";
 
 export const receiveTweets = tweets => {
   return {
@@ -22,6 +23,13 @@ export const removeLike = (id, authedUser) => {
     type: REMOVE_LIKE,
     id,
     authedUser
+  };
+};
+
+export const replyToTweet = () => {
+  return {
+    type: REPLY_TO_TWEET
+    //
   };
 };
 

@@ -9,6 +9,10 @@ class Tweet extends Component {
     this.props.dispatch(toggleLike(tweet.id));
   };
 
+  handleReply = () => {
+    //Reply logic
+  };
+
   render() {
     const { author, text, likes } = this.props.tweet;
     return (
@@ -17,6 +21,7 @@ class Tweet extends Component {
         <h4>{text}</h4>
         <button onClick={this.handleLike}>Like</button>
         <span>{likes.length > 0 && " " + likes.length}</span>
+        <button onClick={this.handleReply}>Reply</button>
       </div>
     );
   }
