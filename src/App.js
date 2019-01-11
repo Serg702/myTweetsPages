@@ -17,7 +17,6 @@ class App extends Component {
 
   componentDidUpdate() {
     const { users, tweets, authedUser } = this.props;
-    console.log(this.props);
     if (users && tweets && authedUser && this.state.isLoading) {
       this.setState({ isLoading: false });
     }

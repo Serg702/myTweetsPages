@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import Tweet from "./Tweet";
+import uuid from "uuid";
 
 const listStyle = css`
   list-style-type: none;
@@ -26,7 +27,7 @@ class MyTweets extends Component {
         <ul className={listStyle}>
           {myTweets &&
             myTweets.map(tweet => (
-              <li key={tweet.id} className={itemListStyle}>
+              <li key={uuid()} className={itemListStyle}>
                 <Tweet tweet={tweet} />
               </li>
             ))}
