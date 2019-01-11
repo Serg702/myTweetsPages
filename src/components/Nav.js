@@ -11,12 +11,12 @@ export default function Nav() {
       <ul className={listStyles}>
         <li>
           <NavLink to="/" exact activeClassName="active">
-            Home
+            All tweets
           </NavLink>
         </li>
         <li>
-          <NavLink to="/new" activeClassName="active">
-            New Tweet
+          <NavLink to="/my" activeClassName="active">
+            My tweets
           </NavLink>
         </li>
       </ul>
