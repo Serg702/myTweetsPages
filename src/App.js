@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Main from "./components/Main";
-import NewTweet from "./components/NewTweet";
+import NewTweet from "./components/Tweet";
 import { handleInitialData } from "./actions";
 import { connect } from "react-redux";
 
@@ -32,7 +32,7 @@ class App extends Component {
             <div>
               <Nav />
               <Route path="/" exact component={Main} />
-              <Route path="/new" component={NewTweet} />
+              {/* <Route path="/new" component={NewTweet} /> */}
             </div>
           )}
         </div>
