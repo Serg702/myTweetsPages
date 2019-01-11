@@ -17,8 +17,6 @@ export default function tweets(state = null, action) {
         }
       };
     case REMOVE_LIKE:
-      console.log(action);
-
       let { id } = action;
 
       return {
