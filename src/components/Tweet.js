@@ -1,12 +1,7 @@
 import React from "react";
 import { css } from "emotion";
 
-const containerStyle = css`
-  label: tweet-container;
-`;
-
-export default function NewTweet(props) {
-  console.log(props.tweet.id);
+export default function Tweet(props) {
   const { author, text, likes } = props.tweet;
   return (
     <div>

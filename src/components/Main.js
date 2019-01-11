@@ -29,9 +29,9 @@ const Main = props => {
   );
 };
 
-const mapStateToProps = store => {
+const mapStateToProps = ({ tweets }) => {
   return {
-    tweets: store.tweets
+    tweets
   };
 };
 
