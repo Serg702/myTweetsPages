@@ -19,6 +19,11 @@ export default function Nav() {
             My tweets
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/new" activeClassName="active">
+            New Tweet
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

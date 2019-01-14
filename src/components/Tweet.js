@@ -10,13 +10,26 @@ class Tweet extends Component {
   };
 
   render() {
-    const { author, text, likes } = this.props.tweet;
+    const { author, text, likes, id } = this.props.tweet;
+    console.log(likes, this.props.authedUser);
+    const likesStyle = css`
+      color: red;
+      font-size: 25px;
+    `;
     return (
       <div>
         <h2>{author}</h2>
         <h4>{text}</h4>
         <button onClick={this.handleLike}>Like</button>
-        <span>{likes.length > 0 && " " + likes.length}</span>
+        <span
+          className={
+            likes.length >= 1 &&
+            likes.includes(this.props.authedUser) &&
+            likesStyle
+          }
+        >
+          {likes.length >= 1 && " " + likes.length}
+        </span>
       </div>
     );
   }
