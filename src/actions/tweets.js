@@ -28,12 +28,7 @@ export const removeLike = (id, authedUser) => {
 export function toggleLike(tweet) {
   return (dispatch, getState) => {
     const { authedUser, tweets } = getState();
-    if (
-      !tweets[tweet].likes.includes(authedUser) &&
-      tweets[tweet].author !== authedUser
-    ) {
-      console.log("Add");
-      // dispatch(removeLike(tweet, authedUser));
+    if (!tweets[tweet].likes.includes(authedUser)) {
       dispatch(addLike(tweet, authedUser));
     } else {
       dispatch(removeLike(tweet, authedUser));
