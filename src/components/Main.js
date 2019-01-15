@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import Tweet from "./Tweet";
+import uuid from "uuid";
 
 const listStyle = css`
   list-style-type: none;
@@ -19,7 +20,7 @@ const Main = props => {
         {props.tweets &&
           Object.values(props.tweets).map(tweet => {
             return (
-              <li key={tweet.id} className={itemListStyle}>
+              <li key={uuid()} className={itemListStyle}>
                 <Tweet tweet={tweet} />
               </li>
             );
@@ -29,9 +30,9 @@ const Main = props => {
   );
 };
 
-const mapStateToProps = store => {
+const mapStateToProps = ({ tweets }) => {
   return {
-    tweets: store.tweets
+    tweets
   };
 };
 
