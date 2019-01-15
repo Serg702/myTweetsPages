@@ -34,7 +34,6 @@ class App extends Component {
                 Username: <em>{this.props.authedUser.toUpperCase()}</em>
               </p>
               <Nav />
-
               <Route path="/" exact component={Main} />
               <Route path="/my" exact component={MyTweets} />
               <Route path="/new" exact component={CreateTweet} />

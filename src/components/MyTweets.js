@@ -6,12 +6,15 @@ import uuid from "uuid";
 
 const listStyle = css`
   list-style-type: none;
+  padding: 0;
+  label: tweets-ul;
 `;
 const itemListStyle = css`
   max-width: 80%;
   margin: 0 auto 30px;
   border: 1px solid #000;
   padding: 15px;
+  label: tweet-li;
 `;
 
 class MyTweets extends Component {
