@@ -6,6 +6,7 @@ import uuid from "uuid";
 
 const listStyle = css`
   list-style-type: none;
+  padding: 0;
 `;
 const itemListStyle = css`
   max-width: 80%;

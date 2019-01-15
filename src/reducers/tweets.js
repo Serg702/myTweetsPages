@@ -1,6 +1,12 @@
-import { RECEIVE_TWEETS, ADD_LIKE, REMOVE_LIKE } from "../actions/tweets";
+import {
+  RECEIVE_TWEETS,
+  ADD_LIKE,
+  REMOVE_LIKE,
+  ADD_TWEET
+} from "../actions/tweets";
 
 export default function tweets(state = null, action) {
+  var id;
   switch (action.type) {
     case RECEIVE_TWEETS:
       return {
@@ -8,16 +14,16 @@ export default function tweets(state = null, action) {
         ...action.tweets
       };
     case ADD_LIKE:
-      let { tweetId } = action;
+      id = action.tweetId;
       return {
         ...state,
-        tweetId: {
-          ...state[tweetId],
-          likes: state[tweetId].likes.push(action.authedUser)
+        [id]: {
+          ...state[id],
+          likes: [...state[id].likes, action.authedUser]
         }
       };
     case REMOVE_LIKE:
-      let { id } = action;
+      id = action.id;
 
       return {
         ...state,
@@ -26,6 +32,20 @@ export default function tweets(state = null, action) {
           likes:
             state[id].likes &&
             state[id].likes.filter(id => id !== action.authedUser)
+        }
+      };
+    case ADD_TWEET:
+      var { authedUser, id, text, timestamp } = action.newTweet;
+      return {
+        ...state,
+        [id]: {
+          id,
+          author: authedUser,
+          text,
+          likes: [],
+          replies: [],
+          replyingTo: null,
+          timestamp
         }
       };
     default:
