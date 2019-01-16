@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleLike, replyToTweet } from "../actions/tweets";
-import { Link, withRouter } from "react-router-dom";
+import { toggleLike } from "../actions/tweets";
+import { Link } from "react-router-dom";
 import { css } from "emotion";
 
 const numStyleActive = css`
@@ -19,8 +19,11 @@ const buttonStyle = css`
 `;
 class Tweet extends Component {
   handleLike = () => {
-    const { tweet } = this.props;
-    this.props.dispatch(toggleLike(tweet.id));
+    const { tweets, tweet, replyId } = this.props;
+
+    this.props.dispatch(
+      toggleLike(`${replyId ? tweets[replyId].id : tweet.id}`)
+    );
   };
 
   handleTime = timestamp => {
@@ -31,22 +34,11 @@ class Tweet extends Component {
     );
   };
 
-  handleReply = () => {
-    const { dispatch, tweet } = this.props;
-    this.setState({ redirect: true });
-    dispatch(replyToTweet(tweet.id));
-  };
-
   render() {
-    const {
-      author,
-      text,
-      likes,
-      timestamp,
-      replyingTo,
-      replies,
-      id
-    } = this.props.tweet;
+    const { tweets, tweet, replyId } = this.props;
+    const { author, text, likes, timestamp, replyingTo, replies, id } = replyId
+      ? tweets[replyId]
+      : tweet;
 
     const dateSubmitted = this.handleTime(timestamp);
     return (
@@ -90,4 +82,4 @@ const mapStateToProps = ({ authedUser, tweets }) => {
     tweets
   };
 };
-export default withRouter(connect(mapStateToProps)(Tweet));
+export default connect(mapStateToProps)(Tweet);

@@ -27,11 +27,11 @@ export const removeLike = (id, authedUser) => {
   };
 };
 
-export const tweetReply = id => {
+export const tweetReply = (replyingTo, id) => {
   return {
     type: REPLY_TO_TWEET,
+    replyingTo,
     id
-    //
   };
 };
 
@@ -61,8 +61,8 @@ export function toggleLike(tweet) {
   };
 }
 
-export function replyToTweet(id) {
-  return (dispatch, getState) => {
-    console.log(id);
+export function replyToTweet(replyingTo, id) {
+  return dispatch => {
+    dispatch(tweetReply(replyingTo, id));
   };
 }

@@ -38,7 +38,7 @@ class App extends Component {
               <Route path="/" exact component={Main} />
               <Route path="/my" exact component={MyTweets} />
               <Route path="/new" exact component={CreateTweet} />
-              <Route path="/reply" component={Reply} />
+              <Route path="/reply/:id" component={Reply} />
             </div>
           )}
         </div>

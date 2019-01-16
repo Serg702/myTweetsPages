@@ -50,10 +50,17 @@ export default function tweets(state = null, action) {
         }
       };
     case REPLY_TO_TWEET:
-      var { id } = action;
+      var { replyingTo, id } = action;
       return {
         ...state,
-        replies: [...state[id].replies, id]
+        [replyingTo]: {
+          ...state[replyingTo],
+          replies: [...state[replyingTo].replies, id]
+        },
+        [id]: {
+          ...state[id],
+          replyingTo: replyingTo
+        }
       };
     default:
       return state;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addNewTweet } from "../actions/tweets";
+import { addNewTweet, replyToTweet } from "../actions/tweets";
 import { updateUserTweets } from "../actions/users";
 import uuid from "uuid";
 import { css } from "emotion";
@@ -9,7 +9,7 @@ const containerStyle = css`
   text-align: center;
 `;
 const elementStyle = css`
-  min-width: 80%;
+  width: 80%;
   min-height: 150px;
 `;
 class CreateTweet extends Component {
@@ -19,10 +19,15 @@ class CreateTweet extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.value) {
+    const { dispatch, replyingTo } = this.props;
+    const { value } = this.state;
+    if (value) {
       const id = uuid().replace(/-/g, "");
-      this.props.dispatch(addNewTweet(this.state.value, id));
-      this.props.dispatch(updateUserTweets(id));
+      dispatch(addNewTweet(value, id));
+      dispatch(updateUserTweets(id));
+      if (replyingTo) {
+        dispatch(replyToTweet(replyingTo, id));
+      }
     } else {
       alert("Please enter text");
     }
