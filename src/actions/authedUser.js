@@ -1,8 +1,16 @@
-export const AUTHED_USER = "AUTHED_USER";
+export const ADD_USER = "ADD_USER";
 
-export const receiveAuth = authedUser => {
+export const addUser = user => {
   return {
-    type: AUTHED_USER,
-    authedUser
+    type: ADD_USER,
+    user
+  };
+};
+
+export const addAuthedUser = user => {
+  return (dispatch, getState) => {
+    if (!getState().authedUser) {
+      dispatch(addUser(user));
+    }
   };
 };

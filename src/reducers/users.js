@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, UPDATE_USER } from "../actions/users";
+import { RECEIVE_USERS, UPDATE_USER, CREATE_USER } from "../actions/users";
 
 export default function users(state = null, action) {
   switch (action.type) {
@@ -14,6 +14,17 @@ export default function users(state = null, action) {
         [authedUser]: {
           ...state[authedUser],
           tweets: [...state[authedUser].tweets, tweetId]
+        }
+      };
+    case CREATE_USER:
+      const { user } = action;
+      return {
+        ...state,
+        [user]: {
+          avatarUrl: "",
+          id: user,
+          name: user,
+          tweets: []
         }
       };
     default:
