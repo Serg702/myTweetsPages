@@ -19,7 +19,7 @@ class CreateTweet extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { dispatch, replyingTo } = this.props;
+    const { dispatch, replyingTo, history } = this.props;
     const { value } = this.state;
     if (value) {
       const id = uuid().replace(/-/g, "");
@@ -27,6 +27,8 @@ class CreateTweet extends Component {
       dispatch(updateUserTweets(id));
       if (replyingTo) {
         dispatch(replyToTweet(replyingTo, id));
+      } else {
+        history.push("/");
       }
     } else {
       alert("Please enter text");
