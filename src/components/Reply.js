@@ -22,40 +22,39 @@ const container = css`
 `;
 class Reply extends Component {
   render() {
-    const { tweets, match } = this.props;
-    const replies = tweets && tweets[match.params.id].replies;
+    const { match, replies } = this.props;
 
     return (
       <div>
-        {replies && (
-          <>
-            <div className={itemListStyle}>
-              <Tweet replyId={match.params.id} />
-            </div>
+        <div className={itemListStyle}>
+          <Tweet replyId={match.params.id} />
+        </div>
 
-            <CreateTweet replyingTo={match.params.id} />
-            <div className={container}>
-              <h2>{replies.length >= 1 && "Replies"}</h2>
-            </div>
-            <ul className={listStyle}>
-              {replies.length >= 1 &&
-                replies.map(id => (
-                  <li key={uuid()} className={itemListStyle}>
-                    <Tweet replyId={id} />
-                  </li>
-                ))}
-            </ul>
-          </>
-        )}
+        <CreateTweet replyingTo={match.params.id} />
+        <div className={container}>
+          <h2>{replies.length >= 1 && "Replies"}</h2>
+        </div>
+        <ul className={listStyle}>
+          {replies.length >= 1 &&
+            replies.map(id => (
+              <li key={uuid()} className={itemListStyle}>
+                <Tweet id={id} />
+              </li>
+            ))}
+        </ul>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ tweets, authedUser }) => {
+const mapStateToProps = ({ tweets }, { match }) => {
+  const replies =
+    tweets &&
+    tweets[match.params.id].replies.sort(
+      (a, b) => tweets[b].timestamp - tweets[a].timestamp
+    );
   return {
-    tweets,
-    authedUser
+    replies
   };
 };
 
