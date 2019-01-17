@@ -35,6 +35,7 @@ class Tweet extends Component {
   };
 
   render() {
+    console.log("ALOOOO", this.props);
     const { tweets, tweet, replyId } = this.props;
     const { author, text, likes, timestamp, replyingTo, replies, id } = replyId
       ? tweets[replyId]
@@ -45,11 +46,7 @@ class Tweet extends Component {
       <div>
         <h2>{author}</h2>
         <span>{dateSubmitted}</span>
-        <p>
-          {replyingTo
-            ? `Replying to: ${this.props.tweets[replyingTo].author}`
-            : null}
-        </p>
+        <p>{replyingTo ? `Replying to: ${tweets[replyingTo].author}` : null}</p>
         <h4>{text}</h4>
         <button onClick={this.handleLike} className={buttonStyle}>
           Like
@@ -76,10 +73,13 @@ class Tweet extends Component {
     );
   }
 }
-const mapStateToProps = ({ authedUser, tweets }) => {
+const mapStateToProps = ({ authedUser, tweets }, { id }) => {
+  const tweet = tweets && tweets[id];
+
   return {
     authedUser,
-    tweets
+    tweets,
+    tweet
   };
 };
 export default connect(mapStateToProps)(Tweet);

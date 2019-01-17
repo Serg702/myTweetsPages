@@ -15,14 +15,16 @@ const itemListStyle = css`
   padding: 15px;
 `;
 const Main = props => {
+  console.log(props);
+  const { tweetIds } = props;
   return (
     <div>
       <ul className={listStyle}>
-        {props.tweets &&
-          Object.values(props.tweets).map(tweet => {
+        {tweetIds &&
+          tweetIds.map(id => {
             return (
               <li key={uuid()} className={itemListStyle}>
-                <Tweet tweet={tweet} />
+                <Tweet id={id} />
               </li>
             );
           })}
@@ -33,7 +35,11 @@ const Main = props => {
 
 const mapStateToProps = ({ tweets }) => {
   return {
-    tweets
+    tweetIds:
+      tweets &&
+      Object.keys(tweets).sort(
+        (a, b) => tweets[b].timestamp - tweets[a].timestamp
+      )
   };
 };
 

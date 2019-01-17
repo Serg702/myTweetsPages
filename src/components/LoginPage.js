@@ -17,6 +17,12 @@ class LoginPage extends Component {
     this.setState({ value: e.target.value });
   };
 
+  componentDidMount = () => {
+    const { dispatch } = this.props;
+    // this.props.dispatch(addAuthedUser("Me"));
+    // dispatch(addNewUser());
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     const { dispatch } = this.props;

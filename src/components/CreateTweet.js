@@ -7,6 +7,7 @@ import { css } from "emotion";
 
 const containerStyle = css`
   text-align: center;
+  margin-top: 50px;
 `;
 const elementStyle = css`
   width: 80%;

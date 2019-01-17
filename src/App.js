@@ -19,19 +19,19 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    const { users, tweets, authedUser } = this.props;
+    const { users, tweets } = this.props;
     if (users && tweets && this.state.isLoading) {
     }
   }
   render() {
-    console.log(this.props);
+    const { authedUser } = this.props;
     return (
       <Router>
         <div>
-          {this.props.authedUser ? (
+          {authedUser ? (
             <div>
               <p>
-                Username: <em>{this.props.authedUser.toUpperCase()}</em>
+                Username: <em>{authedUser.toUpperCase()}</em>
               </p>
               <Nav />
 

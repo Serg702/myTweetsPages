@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import CreateTweet from "./CreateTweet";
 import uuid from "uuid";
 import Tweet from "./Tweet";
 import { css } from "emotion";
+import LoginPage from "./LoginPage";
 
 const itemListStyle = css`
   max-width: 80%;
@@ -23,33 +24,39 @@ const container = css`
 class Reply extends Component {
   render() {
     const { tweets, match } = this.props;
-    const replies = tweets[match.params.id].replies;
+    const replies = tweets && tweets[match.params.id].replies;
+
     return (
       <div>
-        <div className={itemListStyle}>
-          <Tweet replyId={match.params.id} />
-        </div>
+        {replies && (
+          <>
+            <div className={itemListStyle}>
+              <Tweet replyId={match.params.id} />
+            </div>
 
-        <CreateTweet replyingTo={match.params.id} />
-        <div className={container}>
-          <h2>{replies.length >= 1 && "Replies"}</h2>
-        </div>
-        <ul className={listStyle}>
-          {replies.length >= 1 &&
-            replies.map(id => (
-              <li key={uuid()} className={itemListStyle}>
-                <Tweet replyId={id} />
-              </li>
-            ))}
-        </ul>
+            <CreateTweet replyingTo={match.params.id} />
+            <div className={container}>
+              <h2>{replies.length >= 1 && "Replies"}</h2>
+            </div>
+            <ul className={listStyle}>
+              {replies.length >= 1 &&
+                replies.map(id => (
+                  <li key={uuid()} className={itemListStyle}>
+                    <Tweet replyId={id} />
+                  </li>
+                ))}
+            </ul>
+          </>
+        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ tweets }) => {
+const mapStateToProps = ({ tweets, authedUser }) => {
   return {
-    tweets
+    tweets,
+    authedUser
   };
 };
 

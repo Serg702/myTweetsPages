@@ -20,18 +20,18 @@ const itemListStyle = css`
 class MyTweets extends Component {
   render() {
     const { users, authedUser, tweets } = this.props;
-    const myTweets = users[authedUser].tweets.map(
-      authedUserTweet =>
-        Object.values(tweets).filter(tweet => authedUserTweet === tweet.id)[0]
+    const myTweets = users[authedUser].tweets.sort(
+      (a, b) => tweets[b].timestamp - tweets[a].timestamp
     );
 
+    console.log(myTweets);
     return (
       <div>
         <ul className={listStyle}>
           {myTweets &&
-            myTweets.map(tweet => (
+            myTweets.map(id => (
               <li key={uuid()} className={itemListStyle}>
-                <Tweet tweet={tweet} />
+                <Tweet id={id} />
               </li>
             ))}
         </ul>
