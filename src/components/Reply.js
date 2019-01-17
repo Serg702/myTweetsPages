@@ -22,8 +22,9 @@ const container = css`
 `;
 class Reply extends Component {
   render() {
-    const { tweets, match } = this.props;
-    const replies = tweets[match.params.id].replies;
+    console.log(this.props);
+    const { tweets, match, replies } = this.props;
+
     return (
       <div>
         <div className={itemListStyle}>
@@ -38,7 +39,7 @@ class Reply extends Component {
           {replies.length >= 1 &&
             replies.map(id => (
               <li key={uuid()} className={itemListStyle}>
-                <Tweet replyId={id} />
+                <Tweet id={id} />
               </li>
             ))}
         </ul>
@@ -47,9 +48,15 @@ class Reply extends Component {
   }
 }
 
-const mapStateToProps = ({ tweets }) => {
+const mapStateToProps = ({ tweets }, { match }) => {
+  const replies =
+    tweets &&
+    tweets[match.params.id].replies.sort(
+      (a, b) => tweets[b].timestamp - tweets[a].timestamp
+    );
   return {
-    tweets
+    tweets,
+    replies
   };
 };
 
