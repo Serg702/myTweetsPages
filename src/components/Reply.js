@@ -4,7 +4,6 @@ import CreateTweet from "./CreateTweet";
 import uuid from "uuid";
 import Tweet from "./Tweet";
 import { css } from "emotion";
-import LoginPage from "./LoginPage";
 
 const itemListStyle = css`
   max-width: 80%;

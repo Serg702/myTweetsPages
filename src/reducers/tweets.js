@@ -36,7 +36,8 @@ export default function tweets(state = null, action) {
         }
       };
     case ADD_TWEET:
-      var { authedUser, id, text, timestamp } = action.newTweet;
+      id = action.newTweet.id;
+      const { authedUser, text, timestamp } = action.newTweet;
       return {
         ...state,
         [id]: {
@@ -50,7 +51,8 @@ export default function tweets(state = null, action) {
         }
       };
     case REPLY_TO_TWEET:
-      var { replyingTo, id } = action;
+      id = action.id;
+      const { replyingTo } = action;
       return {
         ...state,
         [replyingTo]: {

@@ -15,7 +15,6 @@ const itemListStyle = css`
   padding: 15px;
 `;
 const Main = props => {
-  console.log(props);
   const { tweetIds } = props;
   return (
     <div>

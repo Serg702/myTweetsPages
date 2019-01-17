@@ -19,11 +19,9 @@ const buttonStyle = css`
 `;
 class Tweet extends Component {
   handleLike = () => {
-    const { tweets, tweet, replyId } = this.props;
+    const { tweets, tweet, replyId, dispatch } = this.props;
 
-    this.props.dispatch(
-      toggleLike(`${replyId ? tweets[replyId].id : tweet.id}`)
-    );
+    dispatch(toggleLike(`${replyId ? tweets[replyId].id : tweet.id}`));
   };
 
   handleTime = timestamp => {
@@ -35,8 +33,7 @@ class Tweet extends Component {
   };
 
   render() {
-    console.log("ALOOOO", this.props);
-    const { tweets, tweet, replyId } = this.props;
+    const { tweets, tweet, replyId, authedUser } = this.props;
     const { author, text, likes, timestamp, replyingTo, replies, id } = replyId
       ? tweets[replyId]
       : tweet;
@@ -53,7 +50,7 @@ class Tweet extends Component {
         </button>
         <span
           className={
-            likes.length >= 1 && likes.includes(this.props.authedUser)
+            likes.length >= 1 && likes.includes(authedUser)
               ? numStyleActive
               : numStyle
           }

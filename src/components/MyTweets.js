@@ -24,7 +24,6 @@ class MyTweets extends Component {
       (a, b) => tweets[b].timestamp - tweets[a].timestamp
     );
 
-    console.log(myTweets);
     return (
       <div>
         <ul className={listStyle}>
