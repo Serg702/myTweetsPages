@@ -18,7 +18,7 @@ class LoginPage extends Component {
   };
 
   componentDidMount = () => {
-    const { dispatch } = this.props;
+   
   };
 
   handleSubmit = e => {
