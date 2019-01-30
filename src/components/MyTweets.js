@@ -17,22 +17,35 @@ const itemListStyle = css`
   label: tweet-li;
 `;
 
+const containerStyle = css`
+  text-align: center;
+`;
+
 class MyTweets extends Component {
   render() {
     const { users, authedUser, tweets } = this.props;
-    const myTweets = users[authedUser].tweets.sort(
-      (a, b) => tweets[b].timestamp - tweets[a].timestamp
-    );
+    let myTweets = "";
+
+    if (users[authedUser].tweets.length > 0 && tweets) {
+      myTweets = users[authedUser].tweets.sort(
+        (a, b) => tweets[b].timestamp - tweets[a].timestamp
+      );
+    }
 
     return (
       <div>
         <ul className={listStyle}>
-          {myTweets &&
+          {myTweets ? (
             myTweets.map(id => (
               <li key={uuid()} className={itemListStyle}>
                 <Tweet id={id} />
               </li>
-            ))}
+            ))
+          ) : (
+            <div className={containerStyle}>
+              <p>No tweets yet ...</p>
+            </div>
+          )}
         </ul>
       </div>
     );

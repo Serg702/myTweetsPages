@@ -6,7 +6,6 @@ import Main from "./components/Main";
 import MyTweets from "./components/MyTweets";
 import CreateTweet from "./components/CreateTweet";
 import Reply from "./components/Reply";
-import { handleInitialData } from "./actions";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -14,15 +13,9 @@ class App extends Component {
     isLoading: true
   };
 
-  componentDidMount() {
-    this.props.dispatch(handleInitialData());
-  }
+  componentDidMount() {}
 
-  componentDidUpdate() {
-    const { users, tweets } = this.props;
-    if (users && tweets && this.state.isLoading) {
-    }
-  }
+  componentDidUpdate() {}
   render() {
     const { authedUser } = this.props;
     return (
