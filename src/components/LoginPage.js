@@ -62,8 +62,8 @@ class LoginPage extends Component {
     return (
       <div>
         <div className={headerStyles}>
-          <h1>Welcome to my tweets demo </h1>
-          <h3>Please Sign Up</h3>
+          <h1>Welcome to my Tweeter Clone</h1>
+          <h3>Please Sign in</h3>
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
